@@ -17,11 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from rest_framework import routers
+# import todo.views
+
+# router = routers.DefaultRouter()
+# router.register(r'todos', todo.views.TodoView, 'todo')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage, name='homepage'),
     path('daily15puzzle/', include(('daily15Puzzle.urls', 'daily15Puzzle'), namespace='daily15Puzzle')),
     path('stockPredictAI/', include(('stockPredictAI.urls', 'stockPredictAI'), namespace='stockPredictAI')),
+    path('dailyRankedWordle/', include(('dailyRankedWordle.urls', 'dailyRankedWordle'), namespace='dailyRankedWordle')),
+    path('todo/api/', include(('todo.urls', 'todo'), namespace='todo')),  # Include the 'todo' app's URLs under the 'todo/api/' path
+    # path('api/', include(router.urls)),
 ]
 

@@ -1,0 +1,7 @@
+{
+  "status": "error",
+  "assets": {},
+  "chunks": {},
+  "error": "ModuleNotFoundError",
+  "message": "Module not found: Error: Can't resolve 'css-loader' in 'C:\\Users\\Eric\\Downloads\\Summer23Code\\EricChenWebsiteHomepage\\websiteHomepage\\frontend'"
+}

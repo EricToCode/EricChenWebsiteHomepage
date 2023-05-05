@@ -38,7 +38,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+    'rest_framework',
+    'todo',
 ]
+
+# Add the following configuration for webpack_loader
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'frontend/',  # This should match your React project's output directory
+        'STATS_FILE': os.path.join(BASE_DIR, 'frontend/webpack-stats.json'),  # Path to the webpack-stats.json file
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': [r'.+\.hot-update.js', r'.+\.map']
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -48,9 +63,24 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+]
+CORS_ALLOW_ALL_ORIGINS = True  # You can set this to False in production and only use the whitelist
+
+
 ROOT_URLCONF = 'websiteHomepage.urls'
+
+# Build directory for the React app
+REACT_APP_DIR = os.path.join(BASE_DIR, 'dailyRankedWordle', 'static', 'build')
+
+STATICFILES_DIRS = [
+    REACT_APP_DIR,
+]
 
 TEMPLATES = [
     {
@@ -63,6 +93,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            ],
+            'loaders': [
+                # ...
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
             ],
         },
     },
