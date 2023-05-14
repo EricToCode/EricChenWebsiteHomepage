@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
+    # 'corsheaders',
     'rest_framework',
     'todo',
 ]
@@ -63,8 +63,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'corsheaders.middleware.CorsMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 CORS_ORIGIN_WHITELIST = [
@@ -76,11 +76,11 @@ CORS_ALLOW_ALL_ORIGINS = True  # You can set this to False in production and onl
 ROOT_URLCONF = 'websiteHomepage.urls'
 
 # Build directory for the React app
-REACT_APP_DIR = os.path.join(BASE_DIR, 'dailyRankedWordle', 'static', 'build')
+#REACT_APP_DIR = os.path.join(BASE_DIR, 'dailyRankedWordle', 'static', 'build')
 
-STATICFILES_DIRS = [
-    REACT_APP_DIR,
-]
+# STATICFILES_DIRS = [
+#     REACT_APP_DIR,
+# ]
 
 TEMPLATES = [
     {
