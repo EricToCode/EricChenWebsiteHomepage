@@ -8,4 +8,6 @@ Dependencies needed:
 - nodejs
 - npm
 - create-react-app
-
+- rest_framework (for the to-do react app communicating with the django model)
+- yfinance (for the stocks app)
+- fbprophet
